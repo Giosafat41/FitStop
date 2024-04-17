@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 17, 2024 alle 16:50
+-- Creato il: Apr 17, 2024 alle 17:04
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -48,6 +48,17 @@ CREATE TABLE `amministratore` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id` int(10) NOT NULL,
+  `nome` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `corso`
 --
 
@@ -69,6 +80,22 @@ CREATE TABLE `corso` (
 CREATE TABLE `istruttore` (
   `id` int(10) NOT NULL,
   `id_utente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `prodotto`
+--
+
+CREATE TABLE `prodotto` (
+  `id` int(10) NOT NULL,
+  `id_categoria` int(10) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `prezzo` float NOT NULL,
+  `descrizione` text NOT NULL,
+  `taglia` varchar(4) NOT NULL,
+  `colore` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -145,6 +172,12 @@ ALTER TABLE `amministratore`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `corso`
 --
 ALTER TABLE `corso`
@@ -157,6 +190,13 @@ ALTER TABLE `corso`
 ALTER TABLE `istruttore`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_utente` (`id_utente`);
+
+--
+-- Indici per le tabelle `prodotto`
+--
+ALTER TABLE `prodotto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indici per le tabelle `recensione`
@@ -196,9 +236,21 @@ ALTER TABLE `abbonamento`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `istruttore`
 --
 ALTER TABLE `istruttore`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `prodotto`
+--
+ALTER TABLE `prodotto`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
@@ -234,6 +286,12 @@ ALTER TABLE `corso`
 --
 ALTER TABLE `istruttore`
   ADD CONSTRAINT `istruttore_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`);
+
+--
+-- Limiti per la tabella `prodotto`
+--
+ALTER TABLE `prodotto`
+  ADD CONSTRAINT `prodotto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 
 --
 -- Limiti per la tabella `recensione`
