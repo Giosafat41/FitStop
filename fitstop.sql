@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 17, 2024 alle 13:22
+-- Creato il: Apr 17, 2024 alle 16:50
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -48,12 +48,54 @@ CREATE TABLE `amministratore` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `corso`
+--
+
+CREATE TABLE `corso` (
+  `id` int(10) NOT NULL,
+  `id_sala` int(10) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `orario` time NOT NULL,
+  `data` datetime NOT NULL,
+  `num_iscritti` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `istruttore`
 --
 
 CREATE TABLE `istruttore` (
   `id` int(10) NOT NULL,
   `id_utente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `recensione`
+--
+
+CREATE TABLE `recensione` (
+  `id` int(10) NOT NULL,
+  `id_corso` int(10) NOT NULL,
+  `id_utente` int(10) NOT NULL,
+  `valutazione` int(1) NOT NULL,
+  `testo` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `sala`
+--
+
+CREATE TABLE `sala` (
+  `id` int(10) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `capienza` int(3) NOT NULL,
+  `piano` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -103,11 +145,32 @@ ALTER TABLE `amministratore`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `corso`
+--
+ALTER TABLE `corso`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_sala` (`id_sala`);
+
+--
 -- Indici per le tabelle `istruttore`
 --
 ALTER TABLE `istruttore`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_utente` (`id_utente`);
+
+--
+-- Indici per le tabelle `recensione`
+--
+ALTER TABLE `recensione`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_utente` (`id_utente`),
+  ADD KEY `id_corso` (`id_corso`);
+
+--
+-- Indici per le tabelle `sala`
+--
+ALTER TABLE `sala`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `utente`
@@ -139,6 +202,18 @@ ALTER TABLE `istruttore`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `recensione`
+--
+ALTER TABLE `recensione`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `sala`
+--
+ALTER TABLE `sala`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
@@ -149,10 +224,23 @@ ALTER TABLE `utente`
 --
 
 --
+-- Limiti per la tabella `corso`
+--
+ALTER TABLE `corso`
+  ADD CONSTRAINT `corso_ibfk_1` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`id`);
+
+--
 -- Limiti per la tabella `istruttore`
 --
 ALTER TABLE `istruttore`
   ADD CONSTRAINT `istruttore_ibfk_1` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`);
+
+--
+-- Limiti per la tabella `recensione`
+--
+ALTER TABLE `recensione`
+  ADD CONSTRAINT `recensione_ibfk_1` FOREIGN KEY (`id_corso`) REFERENCES `corso` (`id`),
+  ADD CONSTRAINT `recensione_ibfk_2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`);
 
 --
 -- Limiti per la tabella `utente_tesserato`
