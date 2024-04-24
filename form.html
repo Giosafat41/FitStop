@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Iscriviti a FitStop</title>
+        <link rel="stylesheet" type="text/css" href="stile_iscrizione.css"/>
+    </head>
+    <body>
+        <form class="form" action="insert.php" method="post">
+            <h2>FITSTOP ISCRIZIONE</h2>
+            <p type="Nome"><input type="text" name="name" id="name" placeholder="Scrivi il tuo nome"></p>
+            <p type="Nome utente"><input type="text" name="user_name" id="username"></p>
+            <p type="Data di nascita"><input type="date" name="date" id="date"></p>
+            <p type="Indirizzo"><input type="text" name="address" id="address"></p>
+            <p type="Numero di telefono"><input type="tel" name="phone" id="phone"
+                pattern="[0-9]{10}"
+                placeholder="Non inserire +39"
+                required></p>
+            <p type="Email"><input type="email" name="email" id="email" placeholder="Inserisci l'indirizzo email"></p>
+            <p type="Password"><input type="password" name="password" id="password" placeholder="Inserisci la password"></p>
+            <input type="submit" value="ISCRIVITI">
+        </form>
+</html>
