@@ -4,12 +4,12 @@
 
 <br> 
  
-<b>Risultati in forma di Select: </b> <br>
+<b>Risultati in forma di boh: </b> <br>
 
 <select name="mys">
     {section name=nr loop=$results}
         <option value="{$results[nr]->getUtente()}">
-                   {$results[nr]->getNome()} | {$results[nr]->getUsername()}
+                   | {$results[nr]->getUsername()} | {$results[nr]->getNome()} 
         </option>
     {/section}
 </select>
