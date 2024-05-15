@@ -4,9 +4,9 @@ class EAmministratore {
     private $username;
     private $password;
 
-    public function __construct($_username, $_password){
-        $this->username = $_username;
-        $this->password = $_password;
+    public function __construct($username, $password){
+        $this->username = $username;
+        $this->password = $password;
     }
 
     public function getUsername (){
@@ -17,10 +17,6 @@ class EAmministratore {
         return $this->password;
     }
 
-
-
-
-
     public function setUsername($username){
         $this->username = $username;
     }
@@ -29,13 +25,9 @@ class EAmministratore {
         $this->password = $password;
     }
 
-
-
     public function __toString(){
         $print =" Username: ".$this->getUsername()."\n"." Password: ".$this->getPassword()."\n";
         return $print;
     }
-    
 }
-
 ?>
