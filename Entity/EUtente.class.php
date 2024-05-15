@@ -10,9 +10,8 @@ class EUtente {
     private $num_tel;
     private $email;
     private $password;
-    private $stato;
 
-    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password, $_stato){
+    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password){
         $this->nome = $_nome;
         $this->username = $_username;
         $this->data_nascita = $_data_nascita;
@@ -20,9 +19,9 @@ class EUtente {
         $this->num_tel = $_num_tel;
         $this->email = $_email;
         $this->password = $_password;
-        $this->stato = $_stato;
     }
 
+    //getter
     public function getId(){
         return $this->id;
     }
@@ -59,13 +58,7 @@ class EUtente {
         return $this->stato;
     }
 
-
-
-
-
-
-    
-
+    //setter
     public function setNome($nome) {
         $this->nome=$nome;
     }
@@ -101,13 +94,6 @@ class EUtente {
     public function setHid() {
         $this->stato=0;
     }
-
-
-
-
-
-
-
 
     public function login(){
 
