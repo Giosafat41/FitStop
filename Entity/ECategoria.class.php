@@ -11,6 +11,21 @@ class ECategoria {
         return $this->nome;
     }
     
+
+
+
+
+    public function setNome($nome){
+        $this->nome = $nome;
+    }
+
+
+
+    public function __toString(){
+        $print = " Nome: ".$this->getNome()."\n";
+        return $print;
+    }
 }
+
 
 ?>
