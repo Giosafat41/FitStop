@@ -10,9 +10,8 @@ class EUtente {
     private $num_tel;
     private $email;
     private $password;
-    private $stato;
 
-    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password, $_stato){
+    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password){
         $this->nome = $_nome;
         $this->username = $_username;
         $this->data_nascita = $_data_nascita;
@@ -20,7 +19,6 @@ class EUtente {
         $this->num_tel = $_num_tel;
         $this->email = $_email;
         $this->password = $_password;
-        $this->stato = $_stato;
     }
 
     public function getId(){
@@ -55,17 +53,6 @@ class EUtente {
         return $this->password;
     }
 
-    public function getStato (){
-        return $this->stato;
-    }
-
-
-
-
-
-
-    
-
     public function setNome($nome) {
         $this->nome=$nome;
     }
@@ -93,28 +80,6 @@ class EUtente {
     public function setPassword ($password) {
         $this->password=$password;
     }
-
-
-    public function setStato() {
-        $this->stato=true;
-    }
-    
-
-
-    public function setHid() {
-        $this->stato=0;
-    }
-
-
-    protected function StaToString () {
-        $reg = null;
-        if ($this->getStato())
-            $reg = "registrato";
-        else
-            $reg = "non registrato";
-        return $reg;
-    }
-
 
     public function __toString() {
         $print =" Nome: ".$this->getNome()."\n"." Username: ".$this->getUsername()."\n"." Data di nascita: ".$this->getDataNascita()."\n"." Indirizzo: ".$this->getIndirizzo()."\n"." Numero di telefono: ".$this->getNumTel()."\n"." Email: ".$this->getEmail()."\n"." Password: ".$this->getPassword()."\n"." Stato: ".$this->StaToString()."\n";
