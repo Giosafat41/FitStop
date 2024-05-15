@@ -87,13 +87,23 @@ class EUtente {
         $this->password=$password;
     }
 
-    public function setStato () {
+
+    public function setStato() {
         $this->stato=true;
     }
+    
+
 
     public function setHid() {
         $this->stato=0;
     }
+
+
+
+
+
+
+
 
     public function login(){
 
