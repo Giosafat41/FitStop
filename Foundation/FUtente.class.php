@@ -27,7 +27,7 @@ class FUtente {
     }
 
     public function getNomeDaUsername($username) {
-        $query = "SELECT nome FROM utente WHERE username = '$username' ";
+        $query = "SELECT * FROM utente WHERE username = '$username' ";
         return $this->getUtente($query);
     }
     //aggiungere altre function get per le query
