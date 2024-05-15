@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="stile_login.css">
+    </head>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Iscriviti</h1>
+			<input type="text" placeholder="Nome e cognome" />
+            <input type="text" placeholder="Nome utente" />
+            <input type="date" placeholder="Data di nascita" />
+            <input type="text" placeholder="Indirizzo" />
+            <input type="tel" placeholder="Numero di telefono" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Iscriviti</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Effettua l'accesso</h1>
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<a href="#">Password dimenticata?</a>
+			<button>Accedi</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Bentornato!</h1>
+				<p>Effettua l'accesso e esplora i nostri servizi</p>
+				<button class="ghost" id="signIn">Accedi</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Benvenuto!</h1>
+				<p>Inserisci i tuoi dati ed entra a far parte della nostra community</p>
+				<button class="ghost" id="signUp">Iscriviti</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+</script>
+</html>
