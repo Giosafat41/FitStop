@@ -12,7 +12,7 @@ class EUtente {
     private $password;
     private $stato;
 
-    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password, $stato){
+    public function __construct($_nome, $_username, $_data_nascita, $_indirizzo, $_num_tel, $_email, $_password, $_stato){
         $this->nome = $_nome;
         $this->username = $_username;
         $this->data_nascita = $_data_nascita;
