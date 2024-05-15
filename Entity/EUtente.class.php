@@ -94,22 +94,32 @@ class EUtente {
         $this->password=$password;
     }
 
-    public function setStato () {
+
+    public function setStato() {
         $this->stato=true;
     }
+    
+
 
     public function setHid() {
         $this->stato=0;
     }
 
 
-
-
-
-
-
-
-    public function login(){
-
+    protected function StaToString () {
+        $reg = null;
+        if ($this->getStato())
+            $reg = "registrato";
+        else
+            $reg = "non registrato";
+        return $reg;
     }
+
+
+    public function __toString() {
+        $print =" Nome: ".$this->getNome()."\n"." Username: ".$this->getUsername()."\n"." Data di nascita: ".$this->getDataNascita()."\n"." Indirizzo: ".$this->getIndirizzo()."\n"." Numero di telefono: ".$this->getNumTel()."\n"." Email: ".$this->getEmail()."\n"." Password: ".$this->getPassword()."\n"." Stato: ".$this->StaToString()."\n";
+        return $print;
+    }
+
+
 }
