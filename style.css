@@ -1,0 +1,20 @@
+html,
+body{
+    background-image: url(sfondo_palestra.jpg);
+    background-size: cover;
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+    
+}
+div{
+    height: 100%;
+    width: 25%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+div:hover{
+    background: rgba(255, 255, 255, .5);
+}

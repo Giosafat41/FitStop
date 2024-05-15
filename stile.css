@@ -10,7 +10,8 @@ div {
   width: 25%;
   height: 100%;
   float: left;
-  
+  text-align: center;
+  line-height: 150px;
 }
 
 #div1 {
