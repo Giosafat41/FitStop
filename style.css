@@ -1,10 +1,12 @@
 html,
 body{
-    background-image: url(sfondo_palestra.jpg);
+    background-image: url(doc/images/sfondo.png);
     background-size: cover;
+    background-position: center;
     height: 100%;
     padding: 0%;
     margin: 0%;
+    font-family: 'Roboto Slab';
     
 }
 div{
