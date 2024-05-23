@@ -9,7 +9,7 @@ $pass = "";
 // sia la libreria che i template usati dall'applicazione
 // Importante: questa variabile deve essere modificata ogni volta che il 
 // codice è portato da una macchina ad un'altra ...
-$base_dir_smarty = 'C:\xampp\htdocs\test_fitstop\View\smarty';
+$base_dir_smarty = __DIR__ . '/../View/smarty';
 
 
 ?>

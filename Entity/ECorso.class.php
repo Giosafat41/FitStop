@@ -37,7 +37,7 @@ class ECorso {
     }
 
     public function setSala (Sala $sala) {
-        $this->sala
+        $this->sala = $sala;
     }
     
     public function setNome($nome){
