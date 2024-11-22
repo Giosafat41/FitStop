@@ -5,11 +5,12 @@ $dbname = "fitstop";
 $user = "root";
 $pass = "";
 
-// variabile che contiene il path assoluto della cartella smarty contenente 
-// sia la libreria che i template usati dall'applicazione
-// Importante: questa variabile deve essere modificata ogni volta che il 
-// codice è portato da una macchina ad un'altra ...
+// variabile che contiene il path assoluto della cartella smarty
 $base_dir_smarty = __DIR__ . '/../View/smarty';
 
+// variabile che definisce la dimensione massima di un immagine
+$max_image_size = 5242880;  //5MB
 
+// scadenza cookie di sessione
+$cookie_exp_time = 2592000; //30 giorni in secondi
 ?>

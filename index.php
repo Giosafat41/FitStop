@@ -3,8 +3,8 @@
 error_reporting(E_ALL);
 
 
-    include 'utility/autoload.inc.php';
-    include 'utility/config.inc.php';
+    include 'config/autoload.inc.php';
+    include 'config/config.inc.php';
 
     // creazione oggetto responsabile dei Codici dei Comuni
     $utente = new FUtente();
