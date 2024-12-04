@@ -4,22 +4,26 @@ class EUtente {
 
     private $id;
     private $nome;
+    private $cognome;
     private $username;
     private $data_nascita;
     private $indirizzo;
     private $num_tel;
     private $email;
     private $password;
+    private $abbonamento;
 
-    public function __construct($id, $nome, $username, $data_nascita, $indirizzo, $num_tel, $email, $password){
+    public function __construct($id, $nome, $cognome, $username, $data_nascita, $indirizzo, $num_tel, $email, $password, Abbonamento $abbonamento = null){
         $this->id = $id;
         $this->nome = $nome;
+        $this->cognome = $cognome;
         $this->username = $username;
         $this->data_nascita = $data_nascita;
         $this->indirizzo = $indirizzo;
         $this->num_tel = $num_tel;
         $this->email = $email;
         $this->password = $password;
+        $this->abbonamento = $abbonamento;
     }
 
     //getter
@@ -29,6 +33,10 @@ class EUtente {
 
     public function getNome (){
         return $this->nome;
+    }
+
+    public function getCognome (): mixed{
+        return $this->cognome;
     }
 
     public function getUsername (){
@@ -55,13 +63,25 @@ class EUtente {
         return $this->password;
     }
 
+    public function getAbbonamento (): mixed{
+        return $this->abbonamento;
+    }
+
     public function getStato (){
         return $this->stato;
     }
 
-    
+    //setter
+    public function setId($id){
+        $this->id = $id;
+    }
+
     public function setNome($nome) {
         $this->nome=$nome;
+    }
+
+    public function setCognome($cognome){
+        $this->cognome=$cognome;
     }
 
     public function setUsername ($username) {
@@ -86,6 +106,10 @@ class EUtente {
 
     public function setPassword ($password) {
         $this->password=$password;
+    }
+
+    public function setAbbonamento(Abbonamento $abbonamento){
+        $this->abbonamento=$abbonamento;
     }
 
     public function __toString() {

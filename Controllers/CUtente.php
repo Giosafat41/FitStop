@@ -2,6 +2,37 @@
 
 class CUtente{
     public static function isLogged(){
-        if (USession::getInstance()->getStatoSessione())
+
+        $logged = false;
+
+        if (UCookie::isSet('PHPSESSID')){
+            if(session_status() == PHP_SESSION_NONE){
+                USession::getInstance();
+            }
+        }
+
+        if(USession::isSetSessionElement('user')){
+            $logged = true;
+        }
+
+        if(!$logged){
+            header('Location: '); /**DA COMPLETARE CON IL CONTROLLORE DA RICHIAMARE */
+            exit;
+        } 
+        return true; 
     }
+
+    public static function login(){
+        if(UCookie::isSet('PHPSESSID')){
+            if(session_status() == PHP_SESSION_NONE){ /**PHP_SESSION_NONE variabile globale di php che dice se la sessione è attiva */
+                USession::getInstance();
+            }
+        }
+        if(USession::isSetSessionElement('user')){
+            header('Location: ');     /**DA COMPLETARE CON IL CONTROLLORE DA RICHIAMARE */
+        }
+    }
+
+
+
 }
