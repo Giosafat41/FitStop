@@ -25,12 +25,24 @@ class USession{
         sessione_chiusa();
     }
 
+    public static function chiudiElementoSessione($id){
+        unset($_SESSION[$id]);
+    }
 
+    public static function distruggiSessione(){
+        sessione_distrutta();
+    }
 
+    public static function getElementoSessione($id){
+        return $_SESSION[$id];
+    }
 
-
-
-
-
-    public static function boh()
+    public static function setElementoSessione($id, $valore){
+        if(isset($_SESSION[$id])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
