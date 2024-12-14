@@ -30,35 +30,29 @@ class FUtente {
     }
 
     public function getNomeDaUsername($username) {
-        // Usa una query preparata per prevenire SQL Injection
         $query = "SELECT * FROM utente WHERE username = :username";
+        $stmt = $this->_connection->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        $stmt = $this->_connection->prepare($query);  // Prepara la query
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);  // Lega il parametro :username al valore della variabile $username
-        
-        $stmt->execute();  // Esegui la query
-        
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Ottieni i risultati
-        
-        $results = array();
-        foreach ($rows as $row) {
-            // Qui puoi costruire gli oggetti EUtente come hai fatto prima
-            $tmp = new EUtente(
-                $row['id'], 
-                $row['nome'], 
-                $row['cognome'], 
-                $row['username'], 
-                $row['data_nascita'], 
-                $row['indirizzo'], 
-                $row['num_tel'], 
-                $row['email'], 
+        if ($row) {
+            return new EUtente(
+                $row['id'],
+                $row['nome'],
+                $row['cognome'],
+                $row['username'],
+                $row['data_nascita'],
+                $row['indirizzo'],
+                $row['num_tel'],
+                $row['email'],
                 $row['password']
             );
-            $results[] = $tmp;  // Aggiungi l'utente alla lista dei risultati
         }
-    
-        return $results;  // Restituisci i risultati
+        
+        return null;
     }
+   
     
     //aggiungere altre function get per le query
 
@@ -95,43 +89,49 @@ class FUtente {
 
     // Funzione per inserire un nuovo utente nel database
     public function inserisciUtente($nome, $cognome, $username, $email, $password) {
+        // Controllo se esiste già un utente con lo stesso username o email
+        $query = "SELECT COUNT(*) FROM utente WHERE username = :username OR email = :email";
+        $stmt = $this->_connection->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $count = $stmt->fetchColumn();
+        if ($count > 0) {
+            echo "Username o email già in uso.";
+            return;
+        }
+
         // Hash della password prima di salvarla nel database
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
-        // Prepara la query per inserire l'utente nel database
         $query = "INSERT INTO utente (nome, cognome, username, email, password) 
-                  VALUES (:nome, :cognome, :username, :email, :password)";
-    
+                VALUES (:nome, :cognome, :username, :email, :password)";
         $stmt = $this->_connection->prepare($query);
-        
-        // Bind dei parametri per la query
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':cognome', $cognome);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $hashedPassword);  // Usa la password hashata
-    
-        // Esegui la query
+        $stmt->bindParam(':password', $hashedPassword);
         $stmt->execute();
     }
+
     
 
     // Metodo per verificare la password dell'utente
+    // Simplificata la verifica della password
     public function verificaPassword($username, $password) {
-        // Recupera l'utente dal database
         $utente = $this->getNomeDaUsername($username);
-    
-        // Se l'utente esiste, verifica la password
-        if (count($utente) > 0) {
-            $utente = $utente[0]; // Poiché getNomeDaUsername ritorna un array, prendiamo il primo utente
-            
-            // Verifica la password usando password_verify
-            if (password_verify($password, $utente->getPassword())) {
-                return $utente; // Restituisci l'utente se la password è corretta
-            }
+        if (empty($utente)) {
+            return null; // Restituisce null se l'utente non esiste
         }
-    
-        return null; // Restituisci null se la password è errata o l'utente non esiste
-    }  
+
+        $utente = $utente[0]; // L'array contiene un solo elemento
+        if (password_verify($password, $utente->getPassword())) {
+            return $utente; // Restituisce l'utente se la password è corretta
+        }
+
+        return null; // Restituisce null se la password è errata
+    }
+
     
 }

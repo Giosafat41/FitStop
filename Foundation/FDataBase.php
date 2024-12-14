@@ -35,7 +35,6 @@ class FDataBase {
             $class::bind($stmt, $obj);
             $stmt->execute();
             $id = $this->db->commit();
-            $this->db->commit();
             $this->closeDbConnection();
             return $id;
         } catch (PDOException $e) {
@@ -50,7 +49,7 @@ class FDataBase {
     public function loadDB ($class, $field, $id){
         
         try {
-            $query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "=" . $id . "';";
+            $query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "=" . $id . ";";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();

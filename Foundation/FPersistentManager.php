@@ -30,32 +30,35 @@ class FPersistentManager {
    //--------------------Gestione degli oggetti--------------------
    //restituisce un oggetto specificando la classe e l'id
 
-   public static function retrieveObj($class, $id){
-       
+// Metodo retrieveObj
+public static function retrieveObj($class, $id) {
+    try {
         $foundClass = "F" . substr($class, 1);
         $staticMethod = "getObj";
-
-        $result = call_user_func([$foundClass, $staticMethod], $id);
-
-        return $result;
-
+        if (!method_exists($foundClass, $staticMethod)) {
+            throw new Exception("Metodo $staticMethod non trovato nella classe $foundClass");
+        }
+        return call_user_func([$foundClass, $staticMethod], $id);
+    } catch (Exception $e) {
+        echo "Errore: " . $e->getMessage();
+        return null;
     }
+}
 
-    //carica un oggetto nel db
-
-    public static function uploadObj($obj){
-
+// Metodo uploadObj
+public static function uploadObj($obj) {
+    try {
         $foundClass = "F". substr(get_class($obj), 1);
         $staticMethod = "saveObj";
-
-        $result = call_user_func([$foundClass, $staticMethod], $obj);
-
-        return $result;
+        if (!method_exists($foundClass, $staticMethod)) {
+            throw new Exception("Metodo $staticMethod non trovato nella classe $foundClass");
+        }
+        return call_user_func([$foundClass, $staticMethod], $obj);
+    } catch (Exception $e) {
+        echo "Errore: " . $e->getMessage();
+        return null;
     }
-
-
-    
-
+}
 
 
     //Metodo per salvare un corso sul db
