@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.2, created on 2024-12-06 17:01:52
+/* Smarty version 4.5.2, created on 2024-12-09 15:58:17
   from 'C:\xampp\htdocs\FitStop\View\smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.2',
-  'unifunc' => 'content_67531ff00a33a4_29727867',
+  'unifunc' => 'content_67570589a5a113_67158940',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -18,7 +18,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_67531ff00a33a4_29727867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67570589a5a113_67158940 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
