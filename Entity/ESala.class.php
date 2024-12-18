@@ -1,14 +1,21 @@
 <?php
 
 class ESala{
+
+    private $id;
     private $nome;
     private $capienza;
     private $piano;
 
-    public function __construct($nome, $capienza, $piano) {
+    public function __construct($id, $nome, $capienza, $piano) {
+        $this->id = $id;
         $this->nome = $nome;
         $this->capienza = $capienza;
         $this->piano = $piano;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 
     public function getNome() {
@@ -21,6 +28,10 @@ class ESala{
 
     public function getPiano() {
         return $this->piano;
+    }
+
+    public function ssetId($id){
+        $this->id = $id;
     }
 
     public function setNome($nome){

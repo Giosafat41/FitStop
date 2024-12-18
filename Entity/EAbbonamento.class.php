@@ -4,16 +4,20 @@ class EAbbonamento {
 
     private $id;
     private $tipologia;
-    private $durata;
+    private $inizio;
+    private $fine;
     private $costo;
     private $id_utente;
+    private $stato;
 
-    public function __construct($id, $tipologia, $durata, $costo, $id_utente){
+    public function __construct($id, $tipologia, $inizio, $fine, $costo, Utente $id_utente, $stato){
         $this->id = $id;
         $this->tipologia = $tipologia;
-        $this->durata = $durata;
+        $this->inizio = $inizio;
+        $this->fine = $fine;
         $this->costo = $costo;
         $this->id_utente = $id_utente;
+        $this->stato = $stato;
     }
 
     //getter
@@ -26,8 +30,12 @@ class EAbbonamento {
         return $this->tipologia;
     }
 
-    public function getDurata (){
-        return $this->durata;
+    public function getInizio (){
+        return $this->inizio;
+    }
+
+    public function getFine(){
+        return $this->fine;
     }
 
     public function getCosto (){
@@ -36,6 +44,10 @@ class EAbbonamento {
 
     public function getIdUtente (){
         return $this->id_utente;
+    }
+
+    public function getStato(){
+        return $this->stato;
     }
 
     //setter
@@ -48,17 +60,24 @@ class EAbbonamento {
         $this->tipologia=$tipologia;
     }
 
-    public function setDurata($durata){
-        $this->durata=$durata;
+    public function setInizio($inizio){
+        $this->inizio=$inizio;
+    }
+
+    public function setFine($fine){
+        $this->fine = $fine;
     }
 
     public function setCosto ($costo) {
         $this->costo=$costo;
     }
 
-    public function setIdUStente($id_utente){
+    public function setIdUtente(Utente $id_utente){
         $this->id_utente=$id_utente;
     }
 
+    public function setStato($stato){
+        $this->stato = $stato;
+    }
 }
 ?>

@@ -11,7 +11,7 @@ class CUtente{
             }
         }
 
-        if(USession::isSetSessionElement('user')){
+        if(USession::isSetSessionElement('utente')){
             $logged = true;
         }
 
@@ -28,7 +28,7 @@ class CUtente{
                 USession::getInstance();
             }
         }
-        if(USession::isSetSessionElement('user')){
+        if(USession::isSetSessionElement('utente')){
             header('Location: ');     /**DA COMPLETARE CON IL CONTROLLORE DA RICHIAMARE */
         }
     }

@@ -1,31 +1,55 @@
 <?php
 class ECorso {
 
-    private $sala;
+    private $id;
+    private $id_sala;
+    private $id_istruttore;
     private $nome;
-    private $orario;
+    private $inizio;
+    private $fine;
     private $data;
     private $num_iscritti;
+    private $stato;
    
 
-    public function __construct(Sala $sala, $nome, $orario, $data, $num_iscritti) {
-        $this->sala = $sala;
+    public function __construct($id, Sala $id_sala, Istruttore $id_istruttore, $nome, $descrizione, $inizio, $fine, $data, $num_iscritti, $stato) {
+        $this->id = $id;
+        $this->id_sala = $id_sala;
+        $this->id_istruttore = $id_istruttore;
         $this->nome = $nome;
-        $this->orario = $orario;
+        $this->descrizione = $descrizione;
+        $this->inizio = $inizio;
+        $this->fine = $fine;
         $this->data = $data;
         $this->num_iscritti = $num_iscritti;
+        $this->stato = $stato;
     }
 
+    public function getId(){
+        return $this->id;
+    }
     public function getSala(){
-        return $this->sala;
+        return $this->id_sala;
+    }
+
+    public function getIstruttore(){
+        return $this->id_istruttore;
     }
 
     public function getNome (){
         return $this->nome;
     }
 
-    public function getOrario (){
-        return $this->orario;
+    public function getDescrizione(){
+        return $this->descrizione;
+    }
+
+    public function getInizio (){
+        return $this->inizio;
+    }
+
+    public function getFine(){
+        return $this->fine;
     }
     
     public function getData(){
@@ -36,16 +60,36 @@ class ECorso {
         return $this->num_iscritti;
     }
 
-    public function setSala (Sala $sala) {
-        $this->sala = $sala;
+    public function getStato(){
+        return $this->stato;
+    }
+
+    public function setId($id){
+        $this->id = $id;
+    }
+
+    public function setSala (Sala $id_sala) {
+        $this->id_sala = $id_sala;
+    }
+
+    public function setIstruttore(Istruttore $id_istruttore){
+        $this->id_istruttore = $id_istruttore;
     }
     
     public function setNome($nome){
         $this->nome = $nome;
     }
 
-    public function setOrario($orario){
-        $this->orario = $orario;
+    public function setDescrizione($descrizione){
+        $this->descrizione = $descrizione;
+    }
+
+    public function setInizio($inizio){
+        $this->inizio = $inizio;
+    }
+
+    public function setFine($fine){
+        $this->fine = $fine;
     }
 
     public function setData($data){
@@ -54,6 +98,10 @@ class ECorso {
 
     public function setNumIscritti($num_iscritti){
         $this->num_iscritti = $num_iscritti;
+    }
+
+    public function setStato($stato){
+        $this->stato = $stato;
     }
 
     public function __toString(){
