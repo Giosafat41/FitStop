@@ -1,38 +1,41 @@
 <?php
-require_once __DIR__ . '/Foundation/FUtente.class.php';  // Include la classe FUtente
-require_once __DIR__ . '/config/smarty_config.php';      // Includi la configurazione di Smarty
-
-// Verifica se il modulo è stato inviato
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Raccogli i dati dal form
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Crea un oggetto FUtente per la verifica delle credenziali
-    // Recupera i dati dell'utente
-    $utenteClass = new FUtente();
-
-    // Verifica se la password è corretta
-    $utente = $utenteClass->verificaPassword($username, $password);
-
-    var_dump($utente);
-    
-    if ($utente !== null) {
-        // Login riuscito
-        // Redirigi o esegui altre operazioni (ad esempio, inizializzare la sessione)
-    } else {
-        // Login fallito
-        $login_error = "Nome utente o password errati.";
-    }
-
-}
+// Includi il file di configurazione e Smarty
+require_once __DIR__ . '/View/vendor/autoload.php'; // Carica Smarty
 
 // Crea un'istanza di Smarty
-$smarty = new Smarty();
+$smarty = new Smarty\Smarty;
 
-// Assegna l'errore del login, se presente
-$smarty->assign('login_error', isset($login_error) ? $login_error : '');
+// Inizia la sessione
+session_start();
 
-// Mostra il template di login
-//$smarty->display('login.tpl');
-$smarty->display('C:/xampp/htdocs/FitStop/View/smarty/templates/login.tpl');
+// Definisci le credenziali fisse (per esempio, in una vera applicazione queste saranno nel database)
+$correct_username = 'utente_example';
+$correct_password = 'password_example';
+
+// Variabile per il messaggio di errore
+$error_message = '';
+
+// Controlla se il form è stato inviato
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ottieni i dati del modulo
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    // Verifica se le credenziali sono corrette
+    if ($username === $correct_username && $password === $correct_password) {
+        // Credenziali corrette: memorizza l'utente nella sessione
+        $_SESSION['username'] = $username;
+        // Redirigi l'utente alla pagina dashboard (o una pagina protetta)
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        // Credenziali errate: imposta il messaggio di errore
+        $error_message = 'Nome utente o password errati!';
+    }
+}
+
+// Assegna il messaggio di errore alla variabile Smarty
+$smarty->assign('error_message', $error_message);
+
+// Visualizza il template
+$smarty->display('View/templates/login.tpl');

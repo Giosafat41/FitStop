@@ -1,0 +1,11 @@
+{
+    "name": "maria-letizia/view",
+    "autoload": {
+        "psr-4": {
+            "MariaLetizia\\View\\": "src/"
+        }
+    },
+    "require": {
+        "smarty/smarty": "^5.4"
+    }
+}

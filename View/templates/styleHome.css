@@ -1,0 +1,122 @@
+/* Impostazioni generali */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Barra superiore */
+.header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header span {
+    color: #e63946;
+}
+
+.header h1 {
+    font-size: 2rem;  /* Aumenta la dimensione del titolo */
+}
+
+/* Pulsante Accedi / Registrati */
+.login-btn .btn {
+    background-color: #d70000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn .btn:hover {
+    background-color: #b20000;
+}
+
+/* Sezione "La nostra storia" */
+.storia {
+    display: flex;
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+    align-items: center; /* Centra il contenuto verticalmente */
+    padding: 40px;
+    background-color: #f4f4f4;
+    gap: 40px; /* Aggiungi uno spazio tra il testo e l'immagine */
+    text-align: center; /* Centra il testo all'interno del contenuto */
+}
+
+.storia-content {
+    max-width: 50%;    /* Imposta una larghezza che si adatta meglio all'immagine */
+    font-size: 1.2rem; /* Aumenta la dimensione del testo */
+}
+
+.storia h2 {
+    font-size: 3rem;  /* Aumenta la dimensione del titolo "La nostra storia" */
+    font-weight: bold; /* Imposta il testo come grassetto */
+    color: #e63946;    /* Colore rosso */
+    margin-bottom: 20px; /* Spazio tra il titolo e la descrizione */
+}
+
+
+.storia-image {
+    max-width: 40%; /* Imposta la larghezza dell'immagine */
+    display: flex;
+    justify-content: center;
+}
+
+.storia-image img {
+    border-radius: 10px;
+    max-width: 100%; /* Rende l'immagine reattiva */
+}
+
+
+/* Sezioni Corsi, Abbonamenti, Negozio */
+.info-sections {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.info-box {
+    width: 30%;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.info-box img {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.info-box:hover {
+    transform: scale(1.05);
+}
+
+/* Titoli delle sezioni */
+.info-box h3 {
+    color: #e63946;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
